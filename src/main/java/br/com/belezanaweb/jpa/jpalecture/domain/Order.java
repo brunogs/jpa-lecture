@@ -1,12 +1,23 @@
 package br.com.belezanaweb.jpa.jpalecture.domain;
 
 
+import br.com.belezanaweb.jpa.jpalecture.dto.OrderDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
+@SqlResultSetMapping(
+        name = "OrderCustomerMapping",
+        classes = @ConstructorResult(
+                targetClass = OrderDTO.class, //funciona com entidade nao gerenciadas (POJOs)
+                columns = {
+                        @ColumnResult(name = "total"),
+                        @ColumnResult(name = "name")
+                }
+        )
+)
 @Entity
 @Table(name = "orders")
 @Data
