@@ -4,6 +4,7 @@ import br.com.belezanaweb.jpa.jpalecture.JpaLectureApplicationTests;
 import br.com.belezanaweb.jpa.jpalecture.domain.Customer;
 import br.com.belezanaweb.jpa.jpalecture.domain.Order;
 import br.com.belezanaweb.jpa.jpalecture.dto.OrderDTO;
+import org.junit.Assert;
 import org.junit.Test;
 
 import javax.persistence.EntityManager;
@@ -19,9 +20,12 @@ public class NativeQueries extends JpaLectureApplicationTests {
     private EntityManager entityManager;
 
     @Test
-    public void nativeQuery() throws Exception {
-        Query nativeQuery = entityManager.createNativeQuery("select c.id, c.name, c.age from customers c", Customer.class);
+    public void nativeQueryBasic() throws Exception {
+        Query nativeQuery = entityManager.createNativeQuery("select *  from customers c", Customer.class);
         List<Customer> customers = nativeQuery.getResultList();
+
         System.out.println(customers);
+        Assert.assertTrue(!customers.isEmpty());
     }
+
 }

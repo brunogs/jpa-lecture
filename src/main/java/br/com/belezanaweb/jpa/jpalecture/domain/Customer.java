@@ -1,19 +1,23 @@
 package br.com.belezanaweb.jpa.jpalecture.domain;
 
+import br.com.belezanaweb.jpa.jpalecture.dto.CustomerDTO;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import javax.persistence.*;
 import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
+@SqlResultSetMapping(
+        name = "CustomerMapping",
+        entities = @EntityResult(
+                entityClass = Customer.class,
+                fields = {
+                        @FieldResult(name = "id", column = "customerId"),
+                        @FieldResult(name = "name", column = "customerName"),
+                        @FieldResult(name = "age", column = "customerAge")}))
 @Entity
 @Table(name = "customers")
 @Data

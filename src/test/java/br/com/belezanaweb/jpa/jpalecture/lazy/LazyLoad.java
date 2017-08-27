@@ -34,17 +34,6 @@ public class LazyLoad {
     @Autowired
     private OrderRepository orderRepository;
 
-    @Before
-    public void setUp() throws Exception {
-        Random random = new Random();
-        range(0, 100).forEach(customerIndex -> {
-            int randomAge = random.nextInt(50) + 10;
-            Customer customer = customerRepository.save(new Customer("customer" + customerIndex, randomAge));
-            range(1, random.nextInt(100) + 1)
-                    .forEach(orderIndex -> orderRepository.save(new Order(customer, BigDecimal.valueOf(orderIndex))));
-        });
-    }
-
     @Test(expected = LazyInitializationException.class)
     public void totalByCustomerWithLazyLoadingWithoutTransaction() throws Exception {
         List<Customer> customers = customerRepository.findAll();
