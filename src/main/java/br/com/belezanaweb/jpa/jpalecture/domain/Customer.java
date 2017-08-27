@@ -33,6 +33,9 @@ import java.util.Set;
 @Entity
 @Table(name = "customers")
 @EqualsAndHashCode(of = "name")
+@Data
+@NoArgsConstructor
+@ToString(exclude = "orders")
 public class Customer {
 
     @Id
@@ -54,48 +57,18 @@ public class Customer {
         this.age = age;
     }
 
-    public Customer() {
-    }
-
     public BigDecimal getTotalOrders() {
         return getOrders().stream()
                 .map(Order::getTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public int getAge() {
-        return age;
-    }
-
-    public void setAge(int age) {
-        this.age = age;
-    }
-
     public Set<Order> getOrders() {
         return orders;
-    }
-
-    public void setOrders(Set<Order> orders) {
-        this.orders = orders;
     }
 
     public void addFeature(CustomerFeature feature) {
         this.features.add(feature);
     }
+
 }
