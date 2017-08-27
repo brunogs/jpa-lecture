@@ -13,21 +13,19 @@ import java.util.Set;
 @SqlResultSetMapping(
         name = "CustomerMapping",
         entities = @EntityResult(
-                entityClass = Customer.class,
+                entityClass = Customer.class, //nao funciona com entidades nao gerenciadas
                 fields = {
                         @FieldResult(name = "id", column = "customerId"),
                         @FieldResult(name = "name", column = "customerName"),
                         @FieldResult(name = "age", column = "customerAge")}))
 @Entity
 @Table(name = "customers")
-@Data
 @EqualsAndHashCode(of = "name")
-@NoArgsConstructor
 public class Customer {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    private Long id;
     private String name;
     private int age;
 
@@ -39,9 +37,44 @@ public class Customer {
         this.age = age;
     }
 
+    public Customer() {
+    }
+
     public BigDecimal getTotalOrders() {
         return getOrders().stream()
                 .map(Order::getTotal)
                 .reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public int getAge() {
+        return age;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public Set<Order> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(Set<Order> orders) {
+        this.orders = orders;
     }
 }
