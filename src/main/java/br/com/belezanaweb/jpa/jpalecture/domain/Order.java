@@ -11,6 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 
 @Entity
 @Table(name = "orders")
@@ -26,12 +27,15 @@ public class Order {
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
+    private BigDecimal total;
+
     //TODO pensar bom exemplo com many-to-many
     //private Set<Product> products;
 
 
-    public Order(Customer customer) {
+    public Order(Customer customer, BigDecimal total) {
         this.customer = customer;
+        this.total = total;
     }
 
 }
