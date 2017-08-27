@@ -18,7 +18,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.Assert.*;
 
-public class Projections extends JpaLectureApplicationTests {
+public class ProjectionsJPQL extends JpaLectureApplicationTests {
 
     @PersistenceContext
     private EntityManager entityManager;
