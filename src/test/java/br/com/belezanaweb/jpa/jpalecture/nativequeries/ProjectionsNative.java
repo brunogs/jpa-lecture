@@ -37,7 +37,7 @@ public class ProjectionsNative extends JpaLectureApplicationTests {
     @Test
     public void ordersProjectionMapping() throws Exception {
         Query nativeQuery = entityManager.createNativeQuery("select o.total, c.name " +
-                "from orders o join customers c on o.customer_id = c.id", "OrderCustomerMapping");
+                 "from orders o join customers c on o.customer_id = c.id", "OrderCustomerMapping");
 
         List<OrderDTO> orders = nativeQuery.getResultList();
 

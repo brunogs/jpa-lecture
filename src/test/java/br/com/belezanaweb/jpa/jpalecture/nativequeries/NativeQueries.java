@@ -22,7 +22,7 @@ public class NativeQueries extends JpaLectureApplicationTests {
     @Test
     public void nativeQueryBasic() throws Exception {
 //        Query nativeQuery = entityManager.createNativeQuery("select c.id, c.name  from customers c", Customer.class);
-        Query nativeQuery = entityManager.createNativeQuery("select c.name from customers c", Customer.class);
+        Query nativeQuery = entityManager.createNativeQuery("select * from customers c", Customer.class);
 
         List<Customer> customers = nativeQuery.getResultList();
 

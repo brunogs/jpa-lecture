@@ -34,6 +34,7 @@ import java.util.Map;
                         @ColumnResult(name = "total"),
                         @ColumnResult(name = "name")
                 }
+
         )
 )
 @Entity

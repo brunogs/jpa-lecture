@@ -9,7 +9,8 @@ import java.math.BigDecimal;
 @AllArgsConstructor
 public class OrderDTO {
 
-    BigDecimal total;
+    private BigDecimal total;
 
-    String customer;
+    private String customer;
+
 }
