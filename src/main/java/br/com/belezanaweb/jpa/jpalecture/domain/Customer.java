@@ -1,6 +1,9 @@
 package br.com.belezanaweb.jpa.jpalecture.domain;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
@@ -35,7 +38,7 @@ import java.util.Set;
 @EqualsAndHashCode(of = "name")
 @Data
 @NoArgsConstructor
-@ToString(exclude = "orders")
+@ToString(exclude = {"orders", "features"})
 public class Customer {
 
     @Id
