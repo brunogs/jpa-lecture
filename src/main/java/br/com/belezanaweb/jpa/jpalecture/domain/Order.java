@@ -38,4 +38,8 @@ public class Order {
         this.total = total;
     }
 
+    public Order(Long id, BigDecimal total) {
+        this.id = id;
+        this.total = total;
+    }
 }
