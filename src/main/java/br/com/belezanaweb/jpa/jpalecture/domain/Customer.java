@@ -1,6 +1,9 @@
 package br.com.belezanaweb.jpa.jpalecture.domain;
 
+import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
