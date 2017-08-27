@@ -1,12 +1,10 @@
 package br.com.belezanaweb.jpa.jpalecture.lazy;
 
 import br.com.belezanaweb.jpa.jpalecture.domain.Customer;
-import br.com.belezanaweb.jpa.jpalecture.domain.Order;
 import br.com.belezanaweb.jpa.jpalecture.repository.CustomerRepository;
 import br.com.belezanaweb.jpa.jpalecture.repository.OrderRepository;
 import br.com.belezanaweb.jpa.jpalecture.service.CustomerService;
 import org.hibernate.LazyInitializationException;
-import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,10 +14,8 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
-import java.util.Random;
 
 import static java.util.stream.Collectors.toMap;
-import static java.util.stream.IntStream.range;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
