@@ -5,6 +5,7 @@ import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
+import javax.persistence.CollectionTable;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
 import javax.persistence.EntityResult;
@@ -12,11 +13,10 @@ import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
 import javax.persistence.FetchType;
 import javax.persistence.FieldResult;
-import javax.persistence.ForeignKey;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinTable;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.SqlResultSetMapping;
 import javax.persistence.Table;
@@ -48,7 +48,7 @@ public class Customer {
     private int age;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @JoinTable(name = "customers_features", foreignKey = @ForeignKey(name = "customer_fk_feature"))
+    @CollectionTable(name = "customers_features", joinColumns = @JoinColumn(name = "order_id"))
     @Enumerated(EnumType.STRING)
     private Set<CustomerFeature> features = EnumSet.noneOf(CustomerFeature.class);
 
