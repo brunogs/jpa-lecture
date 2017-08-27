@@ -4,6 +4,7 @@ import br.com.belezanaweb.jpa.jpalecture.domain.Customer;
 import br.com.belezanaweb.jpa.jpalecture.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
@@ -29,13 +30,13 @@ public class CustomerService {
         return customers.stream().collect(toMap(Customer::getName, Customer::getTotalOrders));
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Map<String, BigDecimal> getTotalByCustomerEager() {
         List<Customer> customers = customerRepository.findAllWithOrders();
         return customers.stream().collect(toMap(Customer::getName, Customer::getTotalOrders));
     }
 
-    @Transactional
+    @Transactional(propagation = Propagation.SUPPORTS)
     public Map<String, BigDecimal> getTotalByOldestsCustomers() {
         List<Customer> oldestCustomers = customerRepository.findTop10ByAgeGreaterThanEqual(40);
 
