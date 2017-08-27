@@ -1,12 +1,24 @@
 package br.com.belezanaweb.jpa.jpalecture.domain;
 
-import br.com.belezanaweb.jpa.jpalecture.dto.CustomerDTO;
-import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
-import javax.persistence.*;
+import javax.persistence.ElementCollection;
+import javax.persistence.Entity;
+import javax.persistence.EntityResult;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
+import javax.persistence.FieldResult;
+import javax.persistence.ForeignKey;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinTable;
+import javax.persistence.OneToMany;
+import javax.persistence.SqlResultSetMapping;
+import javax.persistence.Table;
 import java.math.BigDecimal;
+import java.util.EnumSet;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -28,6 +40,11 @@ public class Customer {
     private Long id;
     private String name;
     private int age;
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @JoinTable(name = "customers_features", foreignKey = @ForeignKey(name = "customer_fk_feature"))
+    @Enumerated(EnumType.STRING)
+    private Set<CustomerFeature> features = EnumSet.noneOf(CustomerFeature.class);
 
     @OneToMany(mappedBy = "customer")
     private Set<Order> orders = new HashSet<>();
@@ -76,5 +93,9 @@ public class Customer {
 
     public void setOrders(Set<Order> orders) {
         this.orders = orders;
+    }
+
+    public void addFeature(CustomerFeature feature) {
+        this.features.add(feature);
     }
 }
