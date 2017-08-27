@@ -53,7 +53,7 @@ public class LazyLoad {
 
     @Test
     public void totalByOldestCustomers() throws Exception {
-        Map<String, BigDecimal> totalByCustomer = customerService.getTotalByOldestsCustomers();
+        Map<String, BigDecimal> totalByCustomer = customerService.getTotalByOldestCustomers();
         printTotalByCustomer(totalByCustomer);
     }
 
