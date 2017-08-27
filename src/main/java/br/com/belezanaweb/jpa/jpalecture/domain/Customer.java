@@ -10,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -32,5 +33,11 @@ public class Customer {
     public Customer(String name, int age) {
         this.name = name;
         this.age = age;
+    }
+
+    public BigDecimal getTotalOrders() {
+        return getOrders().stream()
+                .map(Order::getTotal)
+                .reduce(BigDecimal.ZERO, BigDecimal::add);
     }
 }
