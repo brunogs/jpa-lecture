@@ -24,13 +24,13 @@ public class ProjectionsJPQL extends JpaLectureApplicationTests {
     private EntityManager entityManager;
 
     @Test
-    public void avgPriece() throws Exception {
+    public void avgAggregationTotal() throws Exception {
         Double avgPriece = entityManager.createQuery("select avg(o.total) from Order o", Double.class).getSingleResult();
         assertEquals(116.78, avgPriece, 0.);
     }
 
     @Test
-    public void sumTotal() throws Exception {
+    public void sumAggregationTotal() throws Exception {
         BigDecimal sumTotal = entityManager.createQuery("select sum(o.total) from Order o", BigDecimal.class).getSingleResult();
         assertEquals(new BigDecimal("116.78"), sumTotal);
     }
