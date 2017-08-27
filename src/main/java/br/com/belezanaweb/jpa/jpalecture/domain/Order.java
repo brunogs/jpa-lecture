@@ -20,8 +20,8 @@ import java.math.BigDecimal;
 public class Order {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
-    private long id;
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
+    private Long id;
 
     @ManyToOne
     @JoinColumn(name = "customer_id")

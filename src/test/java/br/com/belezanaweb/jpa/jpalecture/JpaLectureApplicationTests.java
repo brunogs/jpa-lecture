@@ -10,8 +10,4 @@ import org.springframework.test.context.junit4.SpringRunner;
 @DataJpaTest
 public class JpaLectureApplicationTests {
 
-	@Test
-	public void contextLoads() {
-	}
-
 }
