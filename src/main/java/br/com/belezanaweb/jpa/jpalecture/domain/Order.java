@@ -4,6 +4,7 @@ package br.com.belezanaweb.jpa.jpalecture.domain;
 import br.com.belezanaweb.jpa.jpalecture.dto.OrderDTO;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
@@ -28,7 +29,7 @@ public class Order {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @ManyToOne
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "customer_id")
     private Customer customer;
 
