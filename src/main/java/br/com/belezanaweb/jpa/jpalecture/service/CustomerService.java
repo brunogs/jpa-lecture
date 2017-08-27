@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
@@ -37,7 +38,7 @@ public class CustomerService {
     }
 
     @Transactional(propagation = Propagation.SUPPORTS)
-    public Map<String, BigDecimal> getTotalByOldestsCustomers() {
+    public Map<String, BigDecimal> getTotalByOldestCustomers() {
         List<Customer> oldestCustomers = customerRepository.findTop10ByAgeGreaterThanEqual(40);
 
         if (oldestCustomers.size() > 5) {
@@ -46,6 +47,21 @@ public class CustomerService {
         } else {
             return Collections.emptyMap();
         }
+    }
+
+    @Transactional
+    public void rewardCustomer() {
+        List<Customer> customers = customerRepository.findTop10ByAgeGreaterThanEqual(30);
+
+        Arrays.asList(customers.get(0), customers.get(1)).forEach(customer -> {
+
+            customerRepository.findById(customer.getId())
+                    .ifPresent(c -> System.out.println(c.getName()));
+
+            customerRepository.findById(customer.getId())
+                    .ifPresent(c -> System.out.println(c.getAge()));
+            //Faz outra regra
+        });
     }
 
 }
