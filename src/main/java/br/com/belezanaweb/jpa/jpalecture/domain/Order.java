@@ -17,6 +17,7 @@ import java.math.BigDecimal;
                         @ColumnResult(name = "total"),
                         @ColumnResult(name = "name")
                 }
+
         )
 )
 @Entity
