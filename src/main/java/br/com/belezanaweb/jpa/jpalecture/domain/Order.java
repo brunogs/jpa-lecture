@@ -3,7 +3,9 @@ package br.com.belezanaweb.jpa.jpalecture.domain;
 
 import br.com.belezanaweb.jpa.jpalecture.dto.OrderDTO;
 import lombok.Data;
+import lombok.EqualsAndHashCode;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -40,6 +42,8 @@ import java.util.Map;
 @Entity
 @Table(name = "orders")
 @Data
+@ToString(exclude = "historicStatus")
+@EqualsAndHashCode(exclude = "historicStatus")
 @NoArgsConstructor
 public class Order {
 

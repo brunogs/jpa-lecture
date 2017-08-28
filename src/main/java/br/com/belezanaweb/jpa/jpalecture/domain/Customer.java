@@ -11,7 +11,6 @@ import javax.persistence.Entity;
 import javax.persistence.EntityResult;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
-import javax.persistence.FetchType;
 import javax.persistence.FieldResult;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -47,7 +46,7 @@ public class Customer {
     private String name;
     private int age;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection
     @CollectionTable(name = "customers_features", joinColumns = @JoinColumn(name = "order_id"))
     @Enumerated(EnumType.STRING)
     private Set<CustomerFeature> features = EnumSet.noneOf(CustomerFeature.class);
