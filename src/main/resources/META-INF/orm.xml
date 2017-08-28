@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<entity-mappings xmlns="http://xmlns.jcp.org/xml/ns/persistence/orm"
+                 xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                 xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence/orm http://xmlns.jcp.org/xml/ns/persistence/orm_2_1.xsd"
+                 version="2.1">
+    
+    <named-query name="Order.findAllWithCustomer">
+        <query>select o from Order o JOIN FETCH o.customer</query>
+    </named-query>
+
+    <named-native-query name="Order.TotalWithCustomerName" result-set-mapping="TotalWithCustomerNameMapping">
+        <query>select o.total, c.name from orders o join customers c on o.customer_id = c.id</query>
+    </named-native-query>
+
+    <named-native-query name="Customer.FindAll" result-set-mapping="CustomerMapping">
+        <query>select c.id as customerId, c.name as customerName, c.age as customerAge from customers c</query>
+    </named-native-query>
+
+
+    <sql-result-set-mapping name="TotalWithCustomerNameMapping">
+        <constructor-result target-class="br.com.belezanaweb.jpa.jpalecture.dto.OrderDTO">
+            <column name="total" class="java.math.BigDecimal"></column>
+            <column name="name" class="java.lang.String"></column>
+        </constructor-result>
+    </sql-result-set-mapping>
+    
+    <sql-result-set-mapping name="CustomerMapping">
+        <entity-result entity-class="br.com.belezanaweb.jpa.jpalecture.domain.Customer">
+            <field-result name="id" column="customerId"></field-result>
+            <field-result name="name" column="customerName"></field-result>
+            <field-result name="age" column="customerAge"></field-result>
+        </entity-result>
+    </sql-result-set-mapping>
+</entity-mappings>

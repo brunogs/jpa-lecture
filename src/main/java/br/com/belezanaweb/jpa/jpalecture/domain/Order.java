@@ -33,10 +33,9 @@ import java.util.Map;
         classes = @ConstructorResult(
                 targetClass = OrderDTO.class, //funciona com entidade nao gerenciadas (POJOs)
                 columns = {
-                        @ColumnResult(name = "total"),
-                        @ColumnResult(name = "name")
+                        @ColumnResult(name = "total", type = BigDecimal.class),
+                        @ColumnResult(name = "name", type = String.class)
                 }
-
         )
 )
 @Entity

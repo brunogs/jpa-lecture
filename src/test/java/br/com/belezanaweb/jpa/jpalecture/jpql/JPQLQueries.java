@@ -27,7 +27,7 @@ public class JPQLQueries extends JpaLectureApplicationTests {
 
     @Test
     public void fetchQueries() throws Exception {
-        List orders = entityManager.createQuery("select o from Order o JOIN FETCH o.customer").getResultList();
+        List orders = entityManager.createNamedQuery("Order.findAllWithCustomer").getResultList();
         System.out.println(orders);
 
     }

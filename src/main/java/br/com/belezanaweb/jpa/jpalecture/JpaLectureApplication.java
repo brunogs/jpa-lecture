@@ -32,10 +32,10 @@ public class JpaLectureApplication implements CommandLineRunner {
 	@Override
 	public void run(String... args) throws Exception {
 		Random random = new Random();
-		range(0, 50).forEach(customerIndex -> {
+		range(0, 20).forEach(customerIndex -> {
 			int randomAge = random.nextInt(50) + 10;
 			Customer customer = customerRepository.save(new Customer("customer" + customerIndex, randomAge));
-			range(1, random.nextInt(50) + 1)
+			range(1, random.nextInt(20) + 1)
 					.forEach(orderIndex -> orderRepository.save(new Order(customer, BigDecimal.valueOf(orderIndex))));
 		});
 	}
