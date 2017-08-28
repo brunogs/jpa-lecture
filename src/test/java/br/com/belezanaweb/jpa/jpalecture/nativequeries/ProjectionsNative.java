@@ -37,9 +37,9 @@ public class ProjectionsNative extends JpaLectureApplicationTests {
 
     @Test
     public void ordersProjectionMapping() throws Exception {
-//        Query nativeQuery = entityManager.createNativeQuery("select o.total, c.name " +
-//                 "from orders o join customers c on o.customer_id = c.id", "OrderCustomerMapping");
-        Query nativeQuery = entityManager.createNamedQuery("Order.TotalWithCustomerName", OrderDTO.class);
+        Query nativeQuery = entityManager.createNativeQuery("select o.total, c.name " +
+                 "from orders o join customers c on o.customer_id = c.id", "OrderCustomerMapping");
+//        Query nativeQuery = entityManager.createNamedQuery("Order.TotalWithCustomerName", OrderDTO.class);
 
         List<OrderDTO> orders = nativeQuery.getResultList();
 
@@ -49,9 +49,9 @@ public class ProjectionsNative extends JpaLectureApplicationTests {
 
     @Test
     public void customersProjection() throws Exception {
-//        Query nativeQuery = entityManager.createNativeQuery("select c.id as customerId, c.name as customerName, c.age as customerAge " +
-//                "from customers c", "CustomerMapping");
-        Query nativeQuery = entityManager.createNamedQuery("Customer.FindAll", Customer.class);
+        Query nativeQuery = entityManager.createNativeQuery("select c.id as customerId, c.name as customerName, c.age as customerAge " +
+                "from customers c", "CustomerMapping");
+//        Query nativeQuery = entityManager.createNamedQuery("Customer.FindAll", Customer.class);
 
         List<Customer> customers = nativeQuery.getResultList();
 
